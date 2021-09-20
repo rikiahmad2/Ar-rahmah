@@ -59,6 +59,12 @@ class TransaksiController extends Controller
         $angsuran = Setor::findOrFail($request->id_angsuran);
         $angsuran->sisa_angsuran = $angsuran->sisa_angsuran - $request->premi;
 
+        $setor_check = Setor::find($request->idtransaksi);
+        if($setor_check == null)
+        {
+            return redirect()->route('transaksi.index')->with('failed', 'Gagal, Id Transaksi tidak ditemukan');
+        }
+
         Transaksi::create([
             'idtransaksi' => $request->idtransaksi,
             'namaortu' => $angsuran->namaortu,
