@@ -16,6 +16,7 @@ class Setor extends Model
         'namaortu',
         'paketkontribusi',
         'sisa_angsuran',
+        'bagihasil',
         'masaperjanjian',
         'carabayar',
         'mta',

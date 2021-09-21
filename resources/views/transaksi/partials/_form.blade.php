@@ -33,6 +33,10 @@
                             <strong>Jumlah Pembayaran Selama Masa Perjanjian </strong>
                             <span>{{ $angsuran->mta }}</span>
                         </li>
+                        <li class="list-group-item d-flex flex-wrap justify-content-between">
+                            <strong>Bagi Hasil</strong>
+                            <span>{{ 'Rp '.number_format($angsuran->bagihasil) }}</span>
+                        </li>
                     </ul>
                 </div>
             </div>

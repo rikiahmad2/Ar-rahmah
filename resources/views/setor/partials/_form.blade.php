@@ -68,6 +68,7 @@
                         <div class="form-group col-lg-4">
                             <label for="jmlhtabarru">Bagi Hasil<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="bagihasil" id="bagihasil" value="{{ isset($setor) ? $setor->jmlhtabarru : old('jmlhtabarru') }}" readonly>
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
                         </div>
                     </div>
                 </div>
@@ -103,9 +104,13 @@
 </script>
 <script>
     $(document).ready( function() {
-
-        alert('Your Message');
-
+        var token = $("#token").val();
+        var paketkontribusi = $("#paketkontribusi").val();
+        $("#bagihasil").val(paketkontribusi*8/100*85/100);
+    });
+    $('#paketkontribusi').on('change', function() {
+        var paketkontribusi = $("#paketkontribusi").val();
+        $("#bagihasil").val(paketkontribusi*8/100*85/100);
     });
 </script>
 

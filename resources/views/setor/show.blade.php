@@ -36,6 +36,10 @@
                                     <strong>Paket Kontribusi</strong>
                                     <span>{{ 'Rp '.number_format($setor->paketkontribusi) }}</span>
                                 </ul>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                                    <strong>Bagi Hasil</strong>
+                                    <span>{{ 'Rp '.number_format($setor->bagihasil) }}</span>
+                                </ul>
                             </li>
                         </div>
                         <div class="card-footer">

@@ -71,6 +71,7 @@ class SetorController extends Controller
         $req['mta'] = $request->mta;
         $req['persentabarru'] = $anggota->persentabarru;
         $req['jmlhtabarru'] = $request->jmlhtabarru;
+        $req['bagihasil'] = $request->bagihasil;
 
         $angsuran = Setor::create($req);
 
