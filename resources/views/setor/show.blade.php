@@ -44,7 +44,9 @@
                                 <input type="hidden" name="_method" value="DELETE">
 
                                 <a href="{{ route('setor.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
+                                @if (Auth::user()->role == 'agen')
                                 <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+                                @endif
                             </form>
                         </div>
                     </div>

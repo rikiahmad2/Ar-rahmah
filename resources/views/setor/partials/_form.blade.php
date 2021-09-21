@@ -58,11 +58,16 @@
                         <div class="form-group col-lg-4">
                             <label for="persentabarru">Persentase Tabarru<span class="text-danger">*</span></label>
                             <select name="persentabarru" id="persentabarru" class="form-control" required>
-                            <option {{ (isset($setor) && $setor->persentabarru == '0,123') || old('persentabarru') == '0,123' ? 'selected' : '' }} value="0,123">12,3%</option>
+                                <option {{ (isset($setor) && $setor->persentabarru == '0,123') || old('persentabarru') == '0,123' ? 'selected' : '' }} value="0,123">12,3%</option>
+                            </select>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="jmlhtabarru">Tabarru<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="jmlhtabarru" id="jmlhtabarru" value="{{ isset($setor) ? $setor->jmlhtabarru : old('jmlhtabarru') }}" required>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="jmlhtabarru">Bagi Hasil<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="bagihasil" id="bagihasil" value="{{ isset($setor) ? $setor->jmlhtabarru : old('jmlhtabarru') }}" readonly>
                         </div>
                     </div>
                 </div>
@@ -81,7 +86,7 @@
     </div>
 </form>
 
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
     function calc(){
     var paket=document.getElementById('paketkontribusi').value;
@@ -95,7 +100,14 @@
     document.getElementById('jmlhtabarru').value=jumlah;
     return false
     }
-    </script>
+</script>
+<script>
+    $(document).ready( function() {
+
+        alert('Your Message');
+
+    });
+</script>
 
 
 

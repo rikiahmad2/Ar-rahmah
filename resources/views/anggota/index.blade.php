@@ -19,7 +19,9 @@
                         </div>
                     @endif
                     <div class="mb-3 text-right">
-                        <a href="{{ route('anggota.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
+                        @if (Auth::user()->role == 'agen')
+                            <a href="{{ route('anggota.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
+                        @endif
                     </div>
                     <div class="card">
                         <div class="card-header">
@@ -54,7 +56,9 @@
                                             <td>{{ $data->no_telp }}</td>
                                             <td>
                                                 <a href="{{ route('anggota.show', $data->id) }}" class="btn btn-sm btn-info">Detail</a>
-                                                <a href="{{ route('anggota.edit', $data->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @if (Auth::user()->role == 'agen')
+                                                    <a href="{{ route('anggota.edit', $data->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

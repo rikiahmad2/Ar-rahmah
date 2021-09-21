@@ -56,7 +56,9 @@
                                 <input type="hidden" name="_method" value="DELETE">
 
                                 <a href="{{ route('anggota.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
-                                <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+                                @if (Auth::user()->role == 'agen')
+                                    <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+                                @endif
                             </form>
                         </div>
                     </div>

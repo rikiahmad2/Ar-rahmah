@@ -28,6 +28,7 @@ Route::get('/logout', [AuthController::class, 'doLogout'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
     // pages
     Route::get('/', [PagesController::class, 'getIndex']);
+    Route::get('/dashboard-keuangan', [PagesController::class, 'getIndexUser']);
 
     // anggota
     Route::resource('anggota', AnggotaController::class);
@@ -41,5 +42,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{id_angsuran}/create', [TransaksiController::class, 'create'])->name('transaksi.create');
         Route::post('/store', [TransaksiController::class, 'store'])->name('transaksi.store');
         Route::get('/{id}', [TransaksiController::class, 'show'])->name('transaksi.show');
+        Route::get('/destroy/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
 });

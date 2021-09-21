@@ -19,7 +19,12 @@ class AuthController extends Controller
         ];
 
         if(auth()->attempt($credentials)) {
-            return redirect('/');
+            if(auth()->user()->role == 'agen'){
+                return redirect('/');
+            }
+            else{
+                return redirect('/dashboard-keuangan');
+            }
         }
 
         return redirect()->back()->with('error', 'Username atau password salah');

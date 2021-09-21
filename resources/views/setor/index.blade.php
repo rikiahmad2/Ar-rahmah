@@ -19,7 +19,9 @@
                         </div>
                     @endif
                     <div class="mb-3 text-right">
+                        @if (Auth::user()->role == 'agen')
                         <a href="{{ route('setor.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah Data Premi</a>
+                        @endif
                     </div>
                     <div class="card">
                         <div class="card-header">
