@@ -89,9 +89,10 @@ class SetorController extends Controller
     public function show($id)
     {
         $setor = Setor::findOrFail($id);
+        $anggota = Anggota::findOrFail($setor->idpolis);
         $transaksi = Transaksi::where('idtransaksi', '=', $id)->get();
 
-        return view('setor.show', compact('setor', 'transaksi'));
+        return view('setor.show', compact('setor', 'transaksi', 'anggota'));
     }
 
     /**

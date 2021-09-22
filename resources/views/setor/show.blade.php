@@ -26,7 +26,7 @@
                                 </li>
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Nama Aanak</strong>
-                                    <span>{{ $setor->namaanak }}</span>
+                                    <span>{{ $anggota->namaanak }}</span>
                                 </li>
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Nama Orang Tua</strong>
