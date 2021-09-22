@@ -58,7 +58,9 @@
                                             <td>{{ 'Rp '.number_format($data->sisa_angsuran) }}</td>
                                             <td>
                                                 <a href="{{ route('setor.show', $data->id) }}" class="btn btn-sm btn-info">Detail</a>
+                                                @if (Auth::user()->role == 'keuangan')
                                                 <a href="{{ route('transaksi.create', $data->id) }}" class="btn btn-sm btn-primary">Tambah Transaksi</a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

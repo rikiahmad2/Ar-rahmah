@@ -58,7 +58,7 @@
                         <div class="form-group col-lg-4">
                             <label for="persentabarru">Persentase Tabarru<span class="text-danger">*</span></label>
                             <select name="persentabarru" id="persentabarru" class="form-control" required>
-                                <option {{ (isset($setor) && $setor->persentabarru == '0,123') || old('persentabarru') == '0,123' ? 'selected' : '' }} value="0,123">12,3%</option>
+                                <option {{ (isset($setor) && $setor->persentabarru == '0,123') || old('persentabarru') == '0,123' ? 'selected' : '' }} value="0.123">12,3%</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-4">
@@ -106,11 +106,24 @@
     $(document).ready( function() {
         var token = $("#token").val();
         var paketkontribusi = $("#paketkontribusi").val();
+        var masaperjanjian = $("#masaperjanjian").val();
+        var carabayar = $("#carabayar").val();
+        var persentabarru = $("#persentabarru").val();
+
         $("#bagihasil").val(paketkontribusi*8/100*85/100);
+        $("#mta").val(paketkontribusi*masaperjanjian/carabayar);
+        $("#jmlhtabarru").val(persentabarru*paketkontribusi);
+
     });
     $('#paketkontribusi').on('change', function() {
         var paketkontribusi = $("#paketkontribusi").val();
+        var masaperjanjian = $("#masaperjanjian").val();
+        var carabayar = $("#carabayar").val();
+        var persentabarru = $("#persentabarru").val();
+
         $("#bagihasil").val(paketkontribusi*8/100*85/100);
+        $("#mta").val(paketkontribusi*masaperjanjian/carabayar);
+        $("#jmlhtabarru").val(persentabarru*paketkontribusi);
     });
 </script>
 
