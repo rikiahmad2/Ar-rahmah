@@ -90,41 +90,15 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
     function calc(){
-    var paket=document.getElementById('paketkontribusi').value;
-    var masa=document.getElementById('masaperjanjian').value;
-    var bayar=document.getElementById('carabayar').value;
-    var bayar=document.getElementById('persentabarru').value;
-    var hasil=masa/bayar;
-    var mta=paket*hasil;
-    var jumlah=mta*persentabaru;
-    document.getElementById('mta').value=mta;
-    document.getElementById('jmlhtabarru').value=jumlah;
-    return false
+        var paketkontribusi = $("#paketkontribusi").val();
+        var masaperjanjian = $("#masaperjanjian").val();
+        var carabayar = $("#carabayar").val();
+        var persentabarru = $("#persentabarru").val();
+
+        $("#bagihasil").val(paketkontribusi*8/100*85/100);
+        $("#mta").val(paketkontribusi*masaperjanjian/carabayar);
+        $("#jmlhtabarru").val(persentabarru*paketkontribusi);
     }
-</script>
-<script>
-    $(document).ready( function() {
-        var token = $("#token").val();
-        var paketkontribusi = $("#paketkontribusi").val();
-        var masaperjanjian = $("#masaperjanjian").val();
-        var carabayar = $("#carabayar").val();
-        var persentabarru = $("#persentabarru").val();
-
-        $("#bagihasil").val(paketkontribusi*8/100*85/100);
-        $("#mta").val(paketkontribusi*masaperjanjian/carabayar);
-        $("#jmlhtabarru").val(persentabarru*paketkontribusi);
-
-    });
-    $('#paketkontribusi').on('change', function() {
-        var paketkontribusi = $("#paketkontribusi").val();
-        var masaperjanjian = $("#masaperjanjian").val();
-        var carabayar = $("#carabayar").val();
-        var persentabarru = $("#persentabarru").val();
-
-        $("#bagihasil").val(paketkontribusi*8/100*85/100);
-        $("#mta").val(paketkontribusi*masaperjanjian/carabayar);
-        $("#jmlhtabarru").val(persentabarru*paketkontribusi);
-    });
 </script>
 
 
