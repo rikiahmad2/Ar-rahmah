@@ -31,16 +31,28 @@
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Nama Orang Tua</strong>
                                     <span>{{ $setor->namaortu }}</span>
-                                </ul>
+                                </li>
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Paket Kontribusi</strong>
                                     <span>{{ 'Rp '.number_format($setor->paketkontribusi) }}</span>
-                                </ul>
+                                </li>
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Bagi Hasil</strong>
                                     <span>{{ 'Rp '.number_format($setor->bagihasil) }}</span>
-                                </ul>
-                            </li>
+                                </li>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                                    <strong>Sisa Angsuran</strong>
+                                    <span>{{ 'Rp '.number_format($setor->sisa_angsuran) }}</span>
+                                </li>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                                    <strong>Masa Perjanjian</strong>
+                                    <span>{{ $setor->masaperjanjian }} Tahun</span>
+                                </li>
+                                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                                    <strong>Tgl Buat</strong>
+                                    <span>{{ $setor->created_at }}</span>
+                                </li>
+                            </ul>
                         </div>
                         <div class="card-footer">
                             <form action="{{ route('setor.destroy', $setor->id) }}" method="POST">
@@ -51,6 +63,7 @@
                                 @if (Auth::user()->role == 'agen')
                                 <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
                                 @endif
+                                <a href="{{ route('setor.pdfprint', ['id' => $setor->id]) }}" class="btn btn-sm btn-primary" target="_blank">Print Pdf</a>
                             </form>
                         </div>
                     </div>

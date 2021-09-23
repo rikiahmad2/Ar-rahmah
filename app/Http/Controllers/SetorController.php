@@ -6,6 +6,7 @@ use App\Models\Setor;
 use App\Models\Anggota;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Codedge\Fpdf\Fpdf\Fpdf;
 
 class SetorController extends Controller
 {
@@ -142,5 +143,63 @@ class SetorController extends Controller
         Setor::findOrFail($id)->delete();
 
         return redirect()->route('setor.index')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function pdfprint($id)
+    {
+
+        //Data
+        $setor = Setor::findOrFail($id);
+        $anggota = Anggota::findOrFail($setor->idpolis);
+
+        $this->fpdf = new Fpdf;
+        $fpdf = $this->fpdf;
+        header('Content-type: application/pdf');
+        $fpdf->AddPage("P", 'A4');
+
+        // Membuat tabel
+        $fpdf->Cell(10, 17, '', 0, 1);
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->Text(70, 15, "Data Premi ".$setor->namaortu);
+        $fpdf->SetFont('Arial', 'B', 8);
+
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 25, '1' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 25, 'ID', 1, 0, 'C');
+        $fpdf->Cell(60, 25, $setor->id, 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '2' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Nama Anak', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, $anggota->namaanak, 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '3' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Nama Orang Tua', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, $setor->namaortu, 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '4' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Paket Kontribusi', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, 'Rp.'.number_format($setor->paketkontribusi), 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '5' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Bagi Hasil', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, 'Rp.'.number_format($setor->bagihasil), 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '6' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Sisa Angsuran', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, 'Rp.'.number_format($setor->sisa_angsuran), 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '7' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Masa perjanjian', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, $setor->masaperjanjian, 1, 1, 'C');
+        $fpdf->setX(30);
+        $fpdf->Cell(10, 20.5, '8' . '.', 1, 0, 'C');
+        $fpdf->Cell(69, 20.5, 'Tanggal buat', 1, 0, 'C');
+        $fpdf->Cell(60, 20.5, $setor->created_at, 1, 1, 'C');
+        
+
+
+        $fpdf->SetTitle('Premi');
+        $this->fpdf->Output();
+        exit;
     }
 }

@@ -32,9 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // anggota
     Route::resource('anggota', AnggotaController::class);
+    Route::get('/anggota-pdfprint/{id}', [AnggotaController::class, 'pdfprint'])->name('anggota.pdfprint');
 
     // setor
     Route::resource('setor', SetorController::class)->except('edit');
+    Route::get('/setor-pdfprint/{id}', [SetorController::class, 'pdfprint'])->name('setor.pdfprint');
 
     // transaksi
     Route::group(['prefix' => 'transaksi'], function () {
@@ -44,4 +46,5 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{id}', [TransaksiController::class, 'show'])->name('transaksi.show');
         Route::get('/destroy/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
+    Route::get('/pdf-print/{id}', [TransaksiController::class, 'pdfprint'])->name('transaksi.pdfprint');
 });

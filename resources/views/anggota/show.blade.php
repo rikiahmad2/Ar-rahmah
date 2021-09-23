@@ -22,7 +22,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Jenis Produk</strong>
-                                    <span>{{ $anggota->jenis_produk }}</span>
+                                    <span>{{ $anggota->jenisproduk }}</span>
                                 </li>
                                 <li class="list-group-item d-flex flex-wrap justify-content-between">
                                     <strong>Nama Anak</strong>
@@ -59,6 +59,7 @@
                                 @if (Auth::user()->role == 'agen')
                                     <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
                                 @endif
+                                <a href="{{ route('anggota.pdfprint', ['id' => $anggota->id]) }}" class="btn btn-sm btn-primary" target="_blank">Print Pdf</a>
                             </form>
                         </div>
                     </div>

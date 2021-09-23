@@ -45,6 +45,7 @@
                         <div class="card-footer">
                             <a href="{{ route('transaksi.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
                             <a href="{{ route('transaksi.destroy', ['id' => $transaksi->id]) }}" class="btn btn-sm btn-danger" type="submit">Hapus</a>
+                            <a href="{{ route('transaksi.pdfprint', ['id' => $transaksi->id]) }}" class="btn btn-sm btn-primary" target="_blank">Print Pdf</a>
                         </div>
                     </div>
                 </div>
