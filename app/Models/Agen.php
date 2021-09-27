@@ -22,6 +22,6 @@ class Agen extends Model
 
     public function Anggota()
     {
-        return $this->hasMany(Anggota::class, 'id_agen');
+        return $this->hasMany(Peserta::class, 'id_agen');
     }
 }

@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\AnggotaController;
-use App\Http\Controllers\SetorController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\FulnadiController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -31,12 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard-keuangan', [PagesController::class, 'getIndexUser']);
 
     // anggota
-    Route::resource('anggota', AnggotaController::class);
-    Route::get('/anggota-pdfprint/{id}', [AnggotaController::class, 'pdfprint'])->name('anggota.pdfprint');
+    Route::resource('anggota', PesertaController::class);
+    Route::get('/anggota-pdfprint/{id}', [PesertaController::class, 'pdfprint'])->name('anggota.pdfprint');
 
     // setor
-    Route::resource('setor', SetorController::class)->except('edit');
-    Route::get('/setor-pdfprint/{id}', [SetorController::class, 'pdfprint'])->name('setor.pdfprint');
+    Route::resource('setor', FulnadiController::class)->except('edit');
+    Route::get('/setor-pdfprint/{id}', [FulnadiController::class, 'pdfprint'])->name('setor.pdfprint');
 
     // transaksi
     Route::group(['prefix' => 'transaksi'], function () {

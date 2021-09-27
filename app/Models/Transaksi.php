@@ -27,6 +27,6 @@ class Transaksi extends Model
 
     public function angsuran()
     {
-        return $this->belongsTo(Setor::class, 'idtransaksi');
+        return $this->belongsTo(Fulnadi::class, 'idtransaksi');
     }
 }

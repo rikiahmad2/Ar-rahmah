@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
-class AnggotaController extends Controller
+class PesertaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class AnggotaController extends Controller
             $q = $request->q;
         }
 
-        $anggota = Anggota::where(function($query) use($q) {
+        $anggota = Peserta::where(function($query) use($q) {
             if($q) {
                 $query->where('nik', 'like', '%'.$q.'%')
                         ->orWhere('nama', 'like', '%'.$q.'%')
@@ -57,7 +57,7 @@ class AnggotaController extends Controller
             'nik.unique' => 'NIK sudah ada'
         ]);
 
-        Anggota::create($request->except('_token'));
+        Peserta::create($request->except('_token'));
 
         return redirect()->route('anggota.index')->with('success', 'Data berhasil disimpan');
     }
@@ -70,7 +70,7 @@ class AnggotaController extends Controller
      */
     public function show($id)
     {
-        $anggota = Anggota::findOrFail($id);
+        $anggota = Peserta::findOrFail($id);
         
         return view('anggota.show', compact('anggota'));
     }
@@ -83,7 +83,7 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        $anggota = Anggota::findOrFail($id);
+        $anggota = Peserta::findOrFail($id);
         
         return view('anggota.edit', compact('anggota'));
     }
@@ -103,7 +103,7 @@ class AnggotaController extends Controller
             'nik.unique' => 'NIK sudah ada'
         ]);
 
-        $anggota = Anggota::findOrFail($id);
+        $anggota = Peserta::findOrFail($id);
 
         $anggota->update($request->except('_token', '_method'));
 
@@ -118,14 +118,14 @@ class AnggotaController extends Controller
      */
     public function destroy($id)
     {
-        Anggota::findOrFail($id)->delete();
+        Peserta::findOrFail($id)->delete();
 
         return redirect()->route('anggota.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function pdfprint($id)
     {
-        $anggota = Anggota::findOrFail($id);
+        $anggota = Peserta::findOrFail($id);
 
         $this->fpdf = new Fpdf;
         $fpdf = $this->fpdf;

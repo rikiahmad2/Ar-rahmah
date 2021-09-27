@@ -6,7 +6,7 @@ use App\Models\Transaksi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Setor extends Model
+class Fulnadi extends Model
 {
     use HasFactory;
 
@@ -28,6 +28,6 @@ class Setor extends Model
 
     public function anggota()
     {
-        return $this->belongsTo(Anggota::class, 'id_anggota');
+        return $this->belongsTo(Peserta::class, 'id_anggota');
     }
 }

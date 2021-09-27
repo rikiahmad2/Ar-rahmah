@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setor;
-use App\Models\Anggota;
+use App\Models\Fulnadi;
+use App\Models\Peserta;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
-class SetorController extends Controller
+class FulnadiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class SetorController extends Controller
             $q = $request->q;
         }
 
-        $setor = Setor::where(function ($query) use ($q) {
+        $setor = Fulnadi::where(function ($query) use ($q) {
             if ($q) {
                 $query->where('id', '=', $q)
                     ->orWhere('namaanak', 'like', '%' . $q . '%')
@@ -47,7 +47,7 @@ class SetorController extends Controller
      */
     public function create()
     {
-        $anggota = Anggota::orderBy('namaanak')->get();
+        $anggota = Peserta::orderBy('namaanak')->get();
 
         return view('setor.create', compact('anggota'));
     }
@@ -61,7 +61,7 @@ class SetorController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $anggota = Anggota::findOrFail($request->idpolis);
+        $anggota = Peserta::findOrFail($request->idpolis);
 
         $req = $request->except('_token');
         $req['namaortu'] = $anggota->namaortu;
@@ -74,7 +74,7 @@ class SetorController extends Controller
         $req['jmlhtabarru'] = $request->jmlhtabarru;
         $req['bagihasil'] = $request->bagihasil;
 
-        $angsuran = Setor::create($req);
+        $angsuran = Fulnadi::create($req);
 
 
 
@@ -89,8 +89,8 @@ class SetorController extends Controller
      */
     public function show($id)
     {
-        $setor = Setor::findOrFail($id);
-        $anggota = Anggota::findOrFail($setor->idpolis);
+        $setor = Fulnadi::findOrFail($id);
+        $anggota = Peserta::findOrFail($setor->idpolis);
         $transaksi = Transaksi::where('idtransaksi', '=', $id)->get();
 
         return view('setor.show', compact('setor', 'transaksi', 'anggota'));
@@ -116,7 +116,7 @@ class SetorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $anggota = Anggota::findOrFail($request->id_anggota);
+        $anggota = Peserta::findOrFail($request->id_anggota);
 
         $req = $request->except('_token', '_method');
         $req['namaanak'] = $anggota->namaanak;
@@ -126,7 +126,7 @@ class SetorController extends Controller
         $req['cara_bayar'] = $anggota->cara_bayar;
         $req['total_bayarTahun'] = $anggota->total_bayarTahun;
 
-        $angsuran = Setor::findOrFail($id);
+        $angsuran = Fulnadi::findOrFail($id);
         $angsuran->update($req);
 
         return redirect()->route('setor.index')->with('success', 'Data berhasil disimpan');
@@ -140,7 +140,7 @@ class SetorController extends Controller
      */
     public function destroy($id)
     {
-        Setor::findOrFail($id)->delete();
+        Fulnadi::findOrFail($id)->delete();
 
         return redirect()->route('setor.index')->with('success', 'Data berhasil dihapus');
     }
@@ -149,8 +149,8 @@ class SetorController extends Controller
     {
 
         //Data
-        $setor = Setor::findOrFail($id);
-        $anggota = Anggota::findOrFail($setor->idpolis);
+        $setor = Fulnadi::findOrFail($id);
+        $anggota = Peserta::findOrFail($setor->idpolis);
 
         $this->fpdf = new Fpdf;
         $fpdf = $this->fpdf;
